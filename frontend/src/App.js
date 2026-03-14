@@ -229,12 +229,12 @@ const CommandBar = ({ onCommand }) => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.4 }}
-      className="fixed bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 w-[92%] md:w-[600px] z-50"
+      className="fixed bottom-6 md:bottom-8 left-4 right-4 md:left-1/2 md:-translate-x-1/2 md:w-[600px] z-50"
       data-testid="command-bar"
     >
       <form onSubmit={handleSubmit}>
         <div
-          className={`command-bar glass-panel rounded-full flex items-center gap-3 px-4 md:px-6 py-3 md:py-4 ${
+          className={`command-bar glass-panel rounded-full flex items-center gap-2 md:gap-3 px-3 md:px-6 py-3 md:py-4 ${
             isFocused ? "ring-1 ring-cyan-500/50" : ""
           }`}
         >
@@ -245,13 +245,13 @@ const CommandBar = ({ onCommand }) => {
             onChange={(e) => setInput(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            placeholder="Enter command... (try: open apps, system status)"
-            className="flex-1 bg-transparent text-white placeholder:text-slate-500 text-sm md:text-base"
+            placeholder="Enter command..."
+            className="flex-1 min-w-0 bg-transparent text-white placeholder:text-slate-500 text-sm md:text-base"
             data-testid="command-input"
           />
           <button
             type="submit"
-            className="icon-btn w-9 h-9 md:w-10 md:h-10 rounded-full"
+            className="icon-btn w-9 h-9 md:w-10 md:h-10 rounded-full flex-shrink-0"
             data-testid="command-submit"
           >
             <Send className="w-4 h-4" />
@@ -259,8 +259,8 @@ const CommandBar = ({ onCommand }) => {
         </div>
       </form>
 
-      {/* Command hints */}
-      <div className="flex justify-center gap-2 mt-2 flex-wrap px-2">
+      {/* Command hints - hidden on very small screens */}
+      <div className="hidden sm:flex justify-center gap-2 mt-2 flex-wrap px-2">
         {["open apps", "system status", "search"].map((hint) => (
           <button
             key={hint}
